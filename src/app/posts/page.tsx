@@ -1,19 +1,16 @@
-// File: app/posts/page.tsx
-// Fetching all posts data in a server component
+import Link from "next/link";
 
-import Link from 'next/link';
-
-// Fetching all posts
 const fetchPosts = async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
   if (!response.ok) {
-    throw new Error('Failed to fetch posts');
+    throw new Error("Failed to fetch posts");
   }
   return response.json();
 };
 
 const PostsPage = async () => {
   const posts = await fetchPosts();
+
 
   return (
     <div className="p-8">

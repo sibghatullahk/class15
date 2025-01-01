@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
 
 interface Post {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
+    userId: number;
+    id: number;
+    title: string;
+    body: string;
+  }
 
 
 export default async function SinglePostPage({ params }: { params: { id: string } }) {

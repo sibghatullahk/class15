@@ -1,4 +1,9 @@
 import Link from "next/link";
+interface AlbumsPage {
+    userId: number;
+    id: number;
+    title: string;
+  }
 
 export default async function AlbumsPage() {
   const res = await fetch("https://jsonplaceholder.typicode.com/albums");

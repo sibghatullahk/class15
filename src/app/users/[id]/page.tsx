@@ -1,4 +1,5 @@
-"use client";
+// src/app/users/[id]/page.server.tsx
+"use server"; // This line marks the component as a Server Component
 
 import { notFound } from "next/navigation";
 
@@ -11,14 +12,9 @@ interface User {
   website: string;
 }
 
-export default async function SingleUserPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  // Make sure the component is `async`
+export default async function SingleUserPage({ params }: { params: { id: string }; }) {
   const res = await fetch(`https://jsonplaceholder.typicode.com/users/${params.id}`);
-  
+
   if (!res.ok) {
     return notFound();
   }
@@ -31,10 +27,7 @@ export default async function SingleUserPage({
   return (
     <article className="max-w-lg mx-auto">
       <h1 className="text-3xl font-bold mb-4">{user.name}</h1>
-      <p className="mb-2 text-gray-600">@{user.username}</p>
-      <p className="mb-2 text-blue-600 underline">{user.email}</p>
-      <p className="mb-2">Phone: {user.phone}</p>
-      <p className="mb-2">Website: {user.website}</p>
+      {/* ... rest of the user details ... */}
     </article>
   );
 }

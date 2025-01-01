@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 
+// Define the type for the album
 interface Album {
   userId: number;
   id: number;
@@ -9,16 +10,19 @@ interface Album {
 export default async function SingleAlbumPage({
   params,
 }: {
-  params: { id: string };
+  params: { id: string }; // Ensure params is of type { id: string }
 }) {
+  // Ensure that `params.id` is used asynchronously with fetch
   const res = await fetch(`https://jsonplaceholder.typicode.com/albums/${params.id}`);
+  
   if (!res.ok) {
-    return notFound();
+    return notFound(); // Return 404 if the album is not found
   }
 
-  const album: Album = await res.json();
-  if (!album?.id) {
-    return notFound();
+  const album: Album = await res.json(); // Fetch the album by ID
+  
+  if (!album || !album.id) {
+    return notFound(); // If the album doesn't exist, return 404
   }
 
   return (
